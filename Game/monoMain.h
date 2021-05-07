@@ -34,7 +34,7 @@ class Game{                                               //Game class that mana
     void moveToNextPlayer();
     void buyProperty();
     bool placeCheck();
-    void propertyRent();
+    void propertyRent(short int* renter);       //propertyID is the name points to the property
     void auction();
     void incrementPosition(int &incrementVal);
     

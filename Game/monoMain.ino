@@ -212,8 +212,117 @@ void Game::buyProperty(){
   else{
     Serial.print("This property belongs to: ");
     Serial.println(propertyOwners[currentPosition]);
+    
+    if(currentPlayer == "Car"){
+      propertyRent(&car);     
+    }
+    else if(currentPlayer == "Ship"){
+      propertyRent(&ship);     
+    }
+    else if(currentPlayer == "Plane"){
+      propertyRent(&plane);     
+    }
+    else if(currentPlayer == "Copter"){
+      propertyRent(&copter);     
+    }
+    
+  }
+}
 
-    //rent part come here
+void Game::propertyRent(short int* renter){
+  switch(currentPosition){
+    case 1:
+         Serial.println(F("Paid rent value of: 70"));
+         *renter -= 70;
+         break;
+    case 3:
+         Serial.println(F("Paid rent value of: 70"));
+         *renter -= 70;
+         break;
+    case 5:
+         Serial.println(F("Paid rent value of: 80"));
+         *renter -= 80;
+         break;
+    case 6:
+         Serial.println(F("Paid rent value of: 80"));
+         *renter -= 80;
+         break;
+    case 8:
+         Serial.println(F("Paid rent value of: 100"));
+         *renter -= 100;
+         break;
+    case 10:
+         Serial.println(F("Paid rent value of: 110"));
+         *renter -= 110;
+         break;
+    case 12:
+         Serial.println(F("Paid rent value of: 110"));
+         *renter -= 110;
+         break;
+    case 13:
+         Serial.println(F("Paid rent value of: 130"));
+         *renter -= 130;
+         break;
+    case 14:
+         Serial.println(F("Paid rent value of: 140"));
+         *renter -= 140;
+         break; 
+    case 15:
+         Serial.println(F("Paid rent value of: 140"));
+         *renter -= 140;
+         break;
+    case 17:
+         Serial.println(F("Paid rent value of: 160"));
+         *renter -= 160;
+         break;
+    case 19:
+         Serial.println(F("Paid rent value of: 170"));
+         *renter -= 170;
+         break;
+    case 21:
+         Serial.println(F("Paid rent value of: 170"));
+         *renter -= 170;
+         break;
+    case 22:
+         Serial.println(F("Paid rent value of: 190"));
+         *renter -= 190;
+         break;
+    case 23:
+         Serial.println(F("Paid rent value of: 200"));
+         *renter -= 200;
+         break;
+    case 24:
+         Serial.println(F("Paid rent value of: 200"));
+         *renter -= 200;
+         break;
+    case 26:
+         Serial.println(F("Paid rent value of: 220"));
+         *renter -= 220;
+         break;
+    case 28:
+         Serial.println(F("Paid rent value of: 230"));
+         *renter -= 230;
+         break;
+    case 30:
+         Serial.println(F("Paid rent value of: 230"));
+         *renter -= 230;
+         break;             
+    case 31:
+         Serial.println(F("Paid rent value of: 250"));
+         *renter -= 250;
+         break;
+    case 33:
+         Serial.println(F("Paid rent value of: 270"));
+         *renter -= 270;
+         break;
+    case 34:
+         Serial.println(F("Paid rent value of: 300"));
+         *renter -= 300;
+         break;
+    case 35:
+         Serial.println(F("Paid rent value of: 220"));
+         *renter -= 220;
+         break;
   }
 }
 
@@ -328,34 +437,7 @@ void Game::auction(){
     }
     
     auction_input = Serial.read();
-    //Serial.println(auction_input);
-    /*
-    if(auction_input == '0'){
-        Serial.println("The auction ended!");
-        Serial.print("Winner of the auction is: ");
-
-        if(currentBidder == 'c'){
-          Serial.println("Car");
-          car -= auction_bid;
-          return;
-        }
-        else if(currentBidder == 's'){
-          Serial.println("Ship");
-          ship -= auction_bid;
-          return;
-        }
-        else if(currentBidder == 'p'){
-          Serial.println("Plane");
-          plane -= auction_bid;
-          return;
-        }
-        else if(currentBidder == 'o'){
-          Serial.println("Copter");
-          copter -= auction_bid;
-          return;
-        }
-    }
-    */
+    
     if(auction_input == 'c' or auction_input == 'C'){
       auction_bid += 20;
       currentBidder = 'c';
