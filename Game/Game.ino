@@ -1,27 +1,26 @@
-#include"monoMain.h"                //contains all the core functionalities 
-
-Game game;    //object instance of class Game
+#include"monoMain.h"
+Game game;
 
 void setup() {
  Serial.begin(115200);          //Starting the Serial monitor
  randomSeed(analogRead(0));     //this line of code contributes in the generation of random dice value
   
   while(true){                  //entry point
-      Serial.println("Number of players allowed: 2,3,4");
+      Serial.println(F("Number of players allowed: 2,3,4"));
       while(Serial.available() == 0){}
       nop = Serial.parseInt();
 
       if(nop > 4 or nop < 2){
-        Serial.println("Wrong number of players");
+        Serial.println(F("Wrong number of players"));
       }
       else{
-         for(int i=0; i<nop; i++){
+         for(char i=0; i<nop; i++){
             game.activePlayers[i] = game.allPlayers[i];       //setting up the number of active players
          }
         break;
       }
   }
-  for(int i=0; i<nop; i++){
+  for(char i=0; i<nop; i++){
     if(game.activePlayers[i] == "Car"){
        car = 1500;
     }
@@ -32,21 +31,20 @@ void setup() {
       plane = 1500;
     }
     else if(game.activePlayers[i] == "Copter"){
-      copter = 1500;
-    }
+      copter = 1500;}
   }
-  
-  Serial.println("Welcome to Ardupoly"); 
+
+Serial.println("Welcome to Ardupoly"); 
   Serial.println("");
 }
 
 void loop() {
   
-  int diceVal1;
-  int diceVal2;
-  int diceVal;
+   int diceVal1;
+   int diceVal2;
+   int diceVal;
   
-  for(int i=0; i<nop; i++){
+  for(short int i=0; i<nop; i++){
     Serial.print(game.activePlayers[i]);
     Serial.print(": ");
 
@@ -66,8 +64,8 @@ void loop() {
 
   clearBuffer();
   
-  Serial.println("");
-  Serial.println("Ready to roll the dice? Press any key! It is currently " + game.currentPlayer + "'s turn");        //rolling the dice
+  Serial.println(F(""));
+  Serial.println ("Ready to roll the dice? Press any key! It is currently " + game.currentPlayer + "'s turn");        //rolling the dice
   while(Serial.available() == 0){}
   
   Serial.println("Rolling the dice... " + game.currentPlayer);
@@ -100,3 +98,7 @@ void loop() {
  
   
 }
+
+      
+
+      
