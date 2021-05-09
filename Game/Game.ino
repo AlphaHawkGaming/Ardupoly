@@ -6,87 +6,78 @@ void setup() {
  randomSeed(analogRead(0));     //this line of code contributes in the generation of random dice value
   
   while(true){                  //entry point
-      Serial.println(F("Number of players allowed: 2,3,4"));
+      Serial.println(F("            ARDUPOLY             " ));
+      Serial.println(F(" ________________________________ "));
+      Serial.println(F("|Number of players allowed: 2,3,4|"));
       while(Serial.available() == 0){}
       nop = Serial.parseInt();
 
       if(nop > 4 or nop < 2){
-        Serial.println(F("Wrong number of players"));
+        Serial.println(F("|Wrong number of players         |"));
       }
       else{
-         for(short int i=0; i<nop; i++){
+         for(char i=0; i<nop; i++){
             game.activePlayers[i] = game.allPlayers[i];       //setting up the number of active players
          }
         break;
       }
   }
   for(char i=0; i<nop; i++){
-    if(game.activePlayers[i] == 'c'){
+    if(game.activePlayers[i] == "Car"){
        car = 1500;
     }
-    else if(game.activePlayers[i] == 's'){
+    else if(game.activePlayers[i] == "Ship"){
       ship = 1500;
     }
-    else if(game.activePlayers[i] == 'p'){
+    else if(game.activePlayers[i] == "Plane"){
       plane = 1500;
     }
-    else if(game.activePlayers[i] == 'o'){
-      copter = 1500;
-    }
+    else if(game.activePlayers[i] == "Copter"){
+      copter = 1500;}
   }
 
-Serial.println(F("Welcome to Ardupoly")); 
-Serial.println("");
+Serial.println(F("|      Let The Game Begin!       |")); 
+Serial.println(F("|                                |"));
 }
 
 void loop() {
   
-   short int diceVal1;
-   short int diceVal2;
-   short int diceVal;
+   int diceVal1;
+   int diceVal2;
+   int diceVal;
   
   for(short int i=0; i<nop; i++){
-   if(game.activePlayers[i] == 'c'){
-      Serial.print(F("Car: "));
-      Serial.println(car);
+    Serial.print(F("|"));
+    Serial.print(game.activePlayers[i]);
+    Serial.print(F(": "));
+
+    if(game.activePlayers[i] == "Car"){
+      Serial.print(car);
+      Serial.println(F("                       |"));
     }
-    else if(game.activePlayers[i] == 's'){
-      Serial.print(F("Ship: "));
-      Serial.println(ship);
+    else if(game.activePlayers[i] == "Ship"){
+      Serial.print(ship);
+      Serial.println(F("                      |"));
     }  
-    else if(game.activePlayers[i] == 'p'){
-      Serial.print(F("Plane: "));
-      Serial.println(plane);
+    else if(game.activePlayers[i] == "Plane"){
+      Serial.print(plane);
+      Serial.println(F("                     |"));
     }
-    else if(game.activePlayers[i] == 'o'){
-      Serial.print(F("Copter: "));
-      Serial.println(copter);
+    else if(game.activePlayers[i] == "Copter"){
+      Serial.print(copter);
+      Serial.println(F("                    |"));
     }
   }
 
   clearBuffer();
   
   Serial.println(F(""));
-  Serial.print(F("Ready to roll the dice? Press any key! It is currently "));        //rolling the dice
-
-  if(game.currentPlayer == 'c'){
-    Serial.println(F("Car's turn"));
-  }
-  else if(game.currentPlayer == 's'){
-    Serial.println(F("Ship's turn"));
-  }
-  else if(game.currentPlayer == 'p'){
-    Serial.println(F("Plane's turn"));
-  }
-  else if(game.currentPlayer == 'o'){
-    Serial.println(F("Copter's turn"));
-  }
-  
+  Serial.println ("Ready to roll the dice? Press any key! It is currently " + game.currentPlayer + "'s turn");        //rolling the dice
   while(Serial.available() == 0){}
   
-  Serial.println(F("Rolling the dice... "));
+  Serial.println("Rolling the dice... " + game.currentPlayer);
   
-  Serial.println("");
+  Serial.println(F(""));
   
   diceVal1 = random(1, 6);                                       //random dice value generation using the random function 
   diceVal2 = random(1, 6);
@@ -105,12 +96,14 @@ void loop() {
   if(!(game.placeCheck())){
     clearBuffer();
     game.buyProperty();                                           //prompting the player to buy the property he landed on
+                                                                  
   }
 
   Serial.println(F("-------------------------------"));
   game.moveToNextPlayer();                                      //updating the game 
-
-  delay(10);
+  
+ 
+  
 }
 
       
