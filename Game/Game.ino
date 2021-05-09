@@ -4,7 +4,7 @@ Game game;
 void setup() {
  Serial.begin(115200);          //Starting the Serial monitor
  randomSeed(analogRead(0));     //this line of code contributes in the generation of random dice value
-  
+
   while(true){                  //entry point
       Serial.println(F("Number of players allowed: 2,3,4"));
       while(Serial.available() == 0){}

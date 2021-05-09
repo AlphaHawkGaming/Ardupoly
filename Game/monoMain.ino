@@ -228,27 +228,145 @@ void Game::buyProperty(){
       Serial.println(F("This property belongs to: Copter"));
     }
     
-    if(currentPlayer == 'c'){
-      propertyRent(&car);     
-    }
-    else if(currentPlayer == 's'){
-      propertyRent(&ship);     
-    }
-    else if(currentPlayer == 'p'){
-      propertyRent(&plane);     
-    }
-    else if(currentPlayer == 'o'){
-      propertyRent(&copter);     
-    }
-    
+     propertyRent();
   }
 }
 
-void Game::propertyRent(short int* renter){
-  if(*renter < 70){
-    Serial.println(F("You don't have enough money to pay the rent"));
+void Game::propertyRent(){
+ if(currentPlayer == propertyOwners[currentPosition]){
+    Serial.println(F("This is your property"));
     return;
   }
+  
+  short int rentLevel;
+  short int rentVal;
+  
+  switch(currentPosition){
+    case 1:
+         rentLevel = getRentLevel(0);
+         rentVal = propertyRents[0][rentLevel];
+         break;
+    case 3:
+         rentLevel = getRentLevel(1);
+         rentVal = propertyRents[0][rentLevel];
+         break;
+    case 5:
+         rentLevel = getRentLevel(2);
+         rentVal = propertyRents[1][rentLevel];
+        break; 
+    case 6:
+         rentLevel = getRentLevel(3);
+         rentVal = propertyRents[1][rentLevel];
+         break; 
+    case 8:
+         rentLevel = getRentLevel(4);
+         rentVal = propertyRents[2][rentLevel];
+         break; 
+    case 10:
+         rentLevel = getRentLevel(5);
+         rentVal = propertyRents[3][rentLevel];
+         break;
+    case 12:
+         rentLevel = getRentLevel(6);
+         rentVal = propertyRents[3][rentLevel];
+         break;
+    case 13:
+         rentLevel = getRentLevel(7);
+         rentVal = propertyRents[4][rentLevel]; 
+         break;
+    case 14:
+         rentLevel = getRentLevel(8);
+         rentVal = propertyRents[5][rentLevel];
+         break;
+    case 15:
+         rentLevel = getRentLevel(9);
+         rentVal = propertyRents[5][rentLevel];
+         break;
+    case 17:
+         rentLevel = getRentLevel(10);
+         rentVal = propertyRents[6][rentLevel];
+         break;
+    case 19:
+         rentLevel = getRentLevel(11);
+         rentVal = propertyRents[7][rentLevel];
+         break;
+    case 21:
+         rentLevel = getRentLevel(12);
+         rentVal = propertyRents[7][rentLevel];
+         break;
+    case 22:
+         rentLevel = getRentLevel(13);
+         rentVal = propertyRents[8][rentLevel];
+         break;
+    case 23:
+         rentLevel = getRentLevel(14);
+         rentVal = propertyRents[9][rentLevel];
+         break;
+    case 24:
+         rentLevel = getRentLevel(15);
+         rentVal = propertyRents[9][rentLevel];
+         break;
+    case 26:
+         rentLevel = getRentLevel(16);
+         rentVal = propertyRents[10][rentLevel];
+         break;
+    case 28:
+         rentLevel = getRentLevel(17);
+         rentVal = propertyRents[11][rentLevel];
+         break;
+    case 30:
+         rentLevel = getRentLevel(18);
+         rentVal = propertyRents[11][rentLevel];
+         break;
+    case 31:
+         rentLevel = getRentLevel(19);
+         rentVal = propertyRents[12][rentLevel];
+         break;
+    case 33:
+         rentLevel = getRentLevel(20);
+         rentVal = propertyRents[13][rentLevel];
+         break;
+    case 35:
+         rentLevel = getRentLevel(21);
+         rentVal = propertyRents[14][rentLevel];
+         break;
+  }
+
+  if(currentPlayer == 'c'){
+    car -= rentVal;
+  }
+  else if(currentPlayer == 's'){
+    ship -= rentVal;
+  }
+  else if(currentPlayer == 'p'){
+    plane -= rentVal;
+  }
+  else if(currentPlayer == 'o'){
+    copter -= rentVal;
+  }
+  
+  if(propertyOwners[currentPosition] == 'c'){
+    car += rentVal;
+  }
+  else if(propertyOwners[currentPosition] == 's'){
+    ship += rentVal;
+  }
+  else if(propertyOwners[currentPosition] == 'p'){
+    plane += rentVal;
+  }
+  else if(propertyOwners[currentPosition] == 'o'){
+    copter += rentVal;
+  }
+  
+  Serial.print(F("Paid rent value of: "));
+  Serial.println(rentVal);
+}
+
+short int Game::getRentLevel(short int* pos){
+  if(rentLevels[*pos] != 5){
+    rentLevels[*pos] += 1;
+  }
+  return rentLevels[*pos];
 }
 
 bool Game::placeCheck(){
@@ -260,8 +378,21 @@ bool Game::placeCheck(){
     //goto chance  
   }
   else if(currentPosition == 7 or currentPosition == 16 or currentPosition == 25 or currentPosition == 34){
-    return true; //remove this later
-    //goto auction                            
+    return true;
+    /*
+    if(currentPlayer == 'c'){
+      car -= 100;                        
+    }
+    else if(currentPlayer == 's'){
+      ship -= 100;                        
+    }
+    else if(currentPlayer == 'p'){
+      plane -= 100;                        
+    }
+    else if(currentPlayer == 'o'){
+      copter -= 100;                        
+    }
+    */
   }
   else if(currentPosition == 27){
     if(currentPlayer == 'c'){
@@ -325,7 +456,7 @@ void Game::auction(){
 
     clearBuffer();
 
-    auction_time = 20000 + millis();
+    auction_time = 15000 + millis();
     //Serial.println(auction_time);
     
     while(Serial.available() == 0){
@@ -372,27 +503,59 @@ void Game::auction(){
     }
     
     auction_input = Serial.read();
-    
-    if(auction_input == 'c' or auction_input == 'C'){
-      auction_bid += 20;
-      currentBidder = 'c';
-    }
-    else if(auction_input == 's' or auction_input == 'S'){
-      auction_bid += 20;
-      currentBidder = 's';
-    }
-    else if(auction_input == 'p' or auction_input == 'P'){
-      auction_bid += 20;
-      currentBidder = 'p';
-    }
-    else if(auction_input == 'o' or auction_input == 'O'){
-      auction_bid += 20;
-      currentBidder = 'o';
-    }
-    else{
-      Serial.println(F("Invalid input!"));
-    }
+
+   if(nop == 2){
+      if(auction_input == 'c' or auction_input == 'C'){
+        auction_bid += 20;
+        currentBidder = 'c';
+      }
+      else if(auction_input == 's' or auction_input == 'S'){
+        auction_bid += 20;
+        currentBidder = 's';
+      }
+      else{
+        Serial.println(F("Invalid input!"));
+      }
+   }
+   else if(nop == 3){
+      if(auction_input == 'c' or auction_input == 'C'){
+        auction_bid += 20;
+        currentBidder = 'c';
+      }
+      else if(auction_input == 's' or auction_input == 'S'){
+        auction_bid += 20;
+        currentBidder = 's';
+      }
+      else if(auction_input == 'p' or auction_input == 'P'){
+        auction_bid += 20;
+        currentBidder = 'p';
+      }
+      else{
+        Serial.println(F("Invalid input!"));
+      }
+   }
+   else{
+      if(auction_input == 'c' or auction_input == 'C'){
+        auction_bid += 20;
+        currentBidder = 'c';
+      }
+      else if(auction_input == 's' or auction_input == 'S'){
+        auction_bid += 20;
+        currentBidder = 's';
+      }
+      else if(auction_input == 'p' or auction_input == 'P'){
+        auction_bid += 20;
+        currentBidder = 'p';
+      }
+      else if(auction_input == 'o' or auction_input == 'O'){
+        auction_bid += 20;
+        currentBidder = 'o';
+      }
+      else{
+        Serial.println(F("Invalid input!"));
+      }
   }
+ }
 }
 
 
