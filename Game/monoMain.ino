@@ -227,7 +227,7 @@ void Game::buyProperty(){
     else if(propertyOwners[currentPosition] == 'o'){
       Serial.println(F("This property belongs to: Copter"));
     }
-    
+
      propertyRent();
   }
 }

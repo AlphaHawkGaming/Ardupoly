@@ -6,15 +6,17 @@ void setup() {
  randomSeed(analogRead(0));     //this line of code contributes in the generation of random dice value
 
   while(true){                  //entry point
-      Serial.println(F("Number of players allowed: 2,3,4"));
+      Serial.println(F("            ARDUPOLY             " ));
+      Serial.println(F(" ________________________________ "));
+      Serial.println(F("|Number of players allowed: 2,3,4|"));
       while(Serial.available() == 0){}
       nop = Serial.parseInt();
 
       if(nop > 4 or nop < 2){
-        Serial.println(F("Wrong number of players"));
+        Serial.println(F("|Wrong number of players         |"));
       }
       else{
-         for(short int i=0; i<nop; i++){
+         for(char i=0; i<nop; i++){
             game.activePlayers[i] = game.allPlayers[i];       //setting up the number of active players
          }
         break;
@@ -35,8 +37,8 @@ void setup() {
     }
   }
 
-Serial.println(F("Welcome to Ardupoly")); 
-Serial.println("");
+Serial.println(F("|      Let The Game Begin!       |")); 
+Serial.println(F("|                                |"));
 }
 
 void loop() {
