@@ -16,13 +16,13 @@ void setup() {
         Serial.println(F("|Wrong number of players         |"));
       }
       else{
-         for(char i=0; i<nop; i++){
+         for(short int i=0; i<nop; i++){
             game.activePlayers[i] = game.allPlayers[i];       //setting up the number of active players
          }
         break;
       }
   }
-  for(char i=0; i<nop; i++){
+  for(short int i=0; i<nop; i++){
     if(game.activePlayers[i] == 'c'){
        car = 1500;
     }
@@ -49,20 +49,25 @@ void loop() {
   
   for(short int i=0; i<nop; i++){
    if(game.activePlayers[i] == 'c'){
-      Serial.print(F("Car: "));
-      Serial.println(car);
+      Serial.print(F("|Car: "));
+      Serial.print(car);
+      Serial.println(F("                       |"));
+      
     }
     else if(game.activePlayers[i] == 's'){
-      Serial.print(F("Ship: "));
-      Serial.println(ship);
+      Serial.print(F("|Ship: "));
+      Serial.print(ship);
+      Serial.println(F("                      |"));
     }  
     else if(game.activePlayers[i] == 'p'){
-      Serial.print(F("Plane: "));
-      Serial.println(plane);
+      Serial.print(F("|Plane: "));
+      Serial.print(plane);
+      Serial.println(F("                     |"));
     }
     else if(game.activePlayers[i] == 'o'){
-      Serial.print(F("Copter: "));
-      Serial.println(copter);
+      Serial.print(F("|Copter: "));
+      Serial.print(copter);
+      Serial.println(F("                    |"));
     }
   }
 

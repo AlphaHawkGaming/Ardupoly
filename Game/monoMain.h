@@ -13,7 +13,7 @@ short int nop;
 class Game{                                               //Game class that manages all the core functions and game data
   public:
     Game(){
-        for(int i=0; i<36; i++){
+        for(short int i=0; i<36; i++){
           propertyState[i] = 0;
         }
         for(short int i=0; i<22; i++){
@@ -24,10 +24,10 @@ class Game{                                               //Game class that mana
     ~Game(){}
   
     String playerPlace;
-    String currentPlayer = "Car";
-    String activePlayers[4];
-    const String allPlayers[4]= {"Car","Ship","Plane","Copter"};
-    String propertyOwners[36]; 
+    char currentPlayer = 'c';
+    char activePlayers[4];
+    const char allPlayers[4] PROGMEM = {'c','s','p','o'};
+    char propertyOwners[36]; 
     
     short int currentPosition;
     short int propertyState[36];
