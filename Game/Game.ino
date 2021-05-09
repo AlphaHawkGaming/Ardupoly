@@ -23,17 +23,18 @@ void setup() {
       }
   }
   for(char i=0; i<nop; i++){
-    if(game.activePlayers[i] == "Car"){
+    if(game.activePlayers[i] == 'c'){
        car = 1500;
     }
-    else if(game.activePlayers[i] == "Ship"){
+    else if(game.activePlayers[i] == 's'){
       ship = 1500;
     }
-    else if(game.activePlayers[i] == "Plane"){
+    else if(game.activePlayers[i] == 'p'){
       plane = 1500;
     }
-    else if(game.activePlayers[i] == "Copter"){
-      copter = 1500;}
+    else if(game.activePlayers[i] == 'o'){
+      copter = 1500;
+    }
   }
 
 Serial.println(F("|      Let The Game Begin!       |")); 
@@ -42,42 +43,52 @@ Serial.println(F("|                                |"));
 
 void loop() {
   
-   int diceVal1;
-   int diceVal2;
-   int diceVal;
+   short int diceVal1;
+   short int diceVal2;
+   short int diceVal;
   
   for(short int i=0; i<nop; i++){
-    Serial.print(F("|"));
-    Serial.print(game.activePlayers[i]);
-    Serial.print(F(": "));
-
-    if(game.activePlayers[i] == "Car"){
-      Serial.print(car);
-      Serial.println(F("                       |"));
+   if(game.activePlayers[i] == 'c'){
+      Serial.print(F("Car: "));
+      Serial.println(car);
     }
-    else if(game.activePlayers[i] == "Ship"){
-      Serial.print(ship);
-      Serial.println(F("                      |"));
+    else if(game.activePlayers[i] == 's'){
+      Serial.print(F("Ship: "));
+      Serial.println(ship);
     }  
-    else if(game.activePlayers[i] == "Plane"){
-      Serial.print(plane);
-      Serial.println(F("                     |"));
+    else if(game.activePlayers[i] == 'p'){
+      Serial.print(F("Plane: "));
+      Serial.println(plane);
     }
-    else if(game.activePlayers[i] == "Copter"){
-      Serial.print(copter);
-      Serial.println(F("                    |"));
+    else if(game.activePlayers[i] == 'o'){
+      Serial.print(F("Copter: "));
+      Serial.println(copter);
     }
   }
 
   clearBuffer();
   
   Serial.println(F(""));
-  Serial.println ("Ready to roll the dice? Press any key! It is currently " + game.currentPlayer + "'s turn");        //rolling the dice
+  Serial.print(F("Ready to roll the dice? Press any key! It is currently "));        //rolling the dice
+
+  if(game.currentPlayer == 'c'){
+    Serial.println(F("Car's turn"));
+  }
+  else if(game.currentPlayer == 's'){
+    Serial.println(F("Ship's turn"));
+  }
+  else if(game.currentPlayer == 'p'){
+    Serial.println(F("Plane's turn"));
+  }
+  else if(game.currentPlayer == 'o'){
+    Serial.println(F("Copter's turn"));
+  }
+  
   while(Serial.available() == 0){}
   
-  Serial.println("Rolling the dice... " + game.currentPlayer);
+  Serial.println(F("Rolling the dice... "));
   
-  Serial.println(F(""));
+  Serial.println("");
   
   diceVal1 = random(1, 6);                                       //random dice value generation using the random function 
   diceVal2 = random(1, 6);
@@ -96,14 +107,12 @@ void loop() {
   if(!(game.placeCheck())){
     clearBuffer();
     game.buyProperty();                                           //prompting the player to buy the property he landed on
-                                                                  
   }
 
   Serial.println(F("-------------------------------"));
   game.moveToNextPlayer();                                      //updating the game 
-  
- 
-  
+
+  delay(10);
 }
 
       

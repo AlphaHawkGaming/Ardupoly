@@ -108,17 +108,22 @@ void Game::switchPlayerPlaces(){
     default:
           playerPlace = "Start";
           currentPosition = 0;
-          if(currentPlayer == "Car"){
+          
+          if(currentPlayer == 'c'){
             car += 200;
+            carPos = 0;
           }
-          else if(currentPlayer == "Ship"){
+          else if(currentPlayer == 's'){
             ship += 200;
+            shipPos = 0;
           }
-          else if(currentPlayer == "Plane"){
+          else if(currentPlayer == 'p'){
             plane += 200;
+            planePos = 0;
           }
-          else if(currentPlayer == "Copter"){
+          else if(currentPlayer == 'o'){
             copter += 200;
+            copterPos = 0;
           }
           break;
   }
@@ -126,36 +131,36 @@ void Game::switchPlayerPlaces(){
 
 void Game::moveToNextPlayer(){
   if(nop == 2){
-    if(currentPlayer == "Car"){
-      currentPlayer = "Ship";
+    if(currentPlayer == 'c'){
+      currentPlayer = 's';
     }
-    else if(currentPlayer == "Ship"){
-      currentPlayer = "Car";
+    else if(currentPlayer == 's'){
+      currentPlayer = 'c';
     }
   }
   else if(nop == 3){
-    if(currentPlayer == "Car"){
-      currentPlayer = "Ship";
+    if(currentPlayer == 'c'){
+      currentPlayer = 's';
     }
-    else if(currentPlayer == "Ship"){
-      currentPlayer = "Plane";
+    else if(currentPlayer == 's'){
+      currentPlayer = 'p';
     }
-    else if(currentPlayer == "Plane"){
-      currentPlayer = "Car";
+    else if(currentPlayer == 'p'){
+      currentPlayer = 'c';
     }
   }
   else if(nop == 4){
-    if(currentPlayer == "Car"){
-      currentPlayer = "Ship";
+    if(currentPlayer == 'c'){
+      currentPlayer = 's';
     }
-    else if(currentPlayer == "Ship"){
-      currentPlayer = "Plane";
+    else if(currentPlayer == 's'){
+      currentPlayer = 'p';
     }
-    else if(currentPlayer == "Plane"){
-      currentPlayer = "Copter";
+    else if(currentPlayer == 'p'){
+      currentPlayer = 'o';
     }
-    else if(currentPlayer == "Copter"){
-      currentPlayer == "Car";
+    else if(currentPlayer == 'o'){
+      currentPlayer = 'c';
     }
   }
 }
@@ -174,46 +179,55 @@ void Game::buyProperty(){
    if(input == 1){
       Serial.print(F("Your money balance: "));
 
-      if(currentPlayer == "Car"){
+      if(currentPlayer == 'c'){
         car = car - propertyPrice[currentPosition];
         propertyState[currentPosition] = 1;
-        propertyOwners[currentPosition] = "Car";
+        propertyOwners[currentPosition] = 'c';
         Serial.println(car);
       }
-      else if(currentPlayer == "Ship"){
+      else if(currentPlayer == 's'){
         ship = ship - propertyPrice[currentPosition];
         propertyState[currentPosition] = 1;
-        propertyOwners[currentPosition] = "Ship";
+        propertyOwners[currentPosition] = 's';
         Serial.println(ship);
       }
-      else if(currentPlayer == "Plane"){
+      else if(currentPlayer == 'p'){
         plane = plane - propertyPrice[currentPosition];
         propertyState[currentPosition] = 1;
-        propertyOwners[currentPosition] = "Plane";
+        propertyOwners[currentPosition] = 'p';
         Serial.println(plane);
       }
-      else if(currentPlayer == "Copter"){
+      else if(currentPlayer == 'o'){
         copter = copter - propertyPrice[currentPosition];
         propertyState[currentPosition] = 1;
-        propertyOwners[currentPosition] = "Copter";
+        propertyOwners[currentPosition] = 'o';
         Serial.println(copter);
       }
     }
     else{
       Serial.println("");
-      Serial.println("Auction");
-      Serial.println("Warning: if no one bids within 20 seconds, the auction will end");
-      Serial.println("Type the values below that correspond to your player name to increase the auction bid");
-      Serial.println("Auction starts now!");
+      Serial.println(F("Auction"));
+      Serial.println(F("Warning: if no one bids within 20 seconds, the auction will end"));
+      Serial.println(F("Type the values below that correspond to your player name to increase the auction bid"));
+      Serial.println(F("Auction starts now!"));
       auction();
     }
     Serial.println("");
   }
   else{
-    Serial.print("This property belongs to: ");
-    Serial.println(propertyOwners[currentPosition]);
+    if(propertyOwners[currentPosition] == 'c'){
+      Serial.println(F("This property belongs to: Car"));
+    }
+    else if(propertyOwners[currentPosition] == 's'){
+      Serial.println(F("This property belongs to: Ship"));
+    }
+    else if(propertyOwners[currentPosition] == 'p'){
+      Serial.println(F("This property belongs to: Plane"));
+    }
+    else if(propertyOwners[currentPosition] == 'o'){
+      Serial.println(F("This property belongs to: Copter"));
+    }
 
-    //rent part come here
   }
 }
 
@@ -226,20 +240,33 @@ bool Game::placeCheck(){
     //goto chance  
   }
   else if(currentPosition == 7 or currentPosition == 16 or currentPosition == 25 or currentPosition == 34){
-    return true; //remove this later
-    //goto auction                            
+    return true;
+    /*
+    if(currentPlayer == 'c'){
+      car -= 100;                        
+    }
+    else if(currentPlayer == 's'){
+      ship -= 100;                        
+    }
+    else if(currentPlayer == 'p'){
+      plane -= 100;                        
+    }
+    else if(currentPlayer == 'o'){
+      copter -= 100;                        
+    }
+    */
   }
   else if(currentPosition == 27){
-    if(currentPlayer == "Car"){
+    if(currentPlayer == 'c'){
       carPos = 9;
     }
-    if(currentPlayer == "Ship"){
+    if(currentPlayer == 's'){
       shipPos = 9;
     }
-    if(currentPlayer == "Plane"){
+    if(currentPlayer == 'p'){
       planePos = 9;
     }
-    if(currentPlayer == "Copter"){
+    if(currentPlayer == 'o'){
       copterPos = 9;
     }
     return true;
@@ -249,23 +276,23 @@ bool Game::placeCheck(){
   }
 }
 
-void Game::incrementPosition(int &incrementVal){
-  if(currentPlayer == "Car"){
+void Game::incrementPosition(short int &incrementVal){
+  if(currentPlayer == 'c'){
     carPos += (short int) incrementVal;  
     currentPosition = carPos;
   }
   
-  if(currentPlayer == "Ship"){
+  if(currentPlayer == 's'){
     shipPos += (short int) incrementVal;  
     currentPosition = shipPos;
   }
   
-  if(currentPlayer == "Plane"){
+  if(currentPlayer == 'p'){
     planePos += (short int) incrementVal;  
     currentPosition = planePos;
   }
   
-  if(currentPlayer == "Copter"){
+  if(currentPlayer == 'o'){
     copterPos += (short int) incrementVal;  
     currentPosition = copterPos;
   }
@@ -286,12 +313,12 @@ void Game::auction(){
     
     Serial.println("");
     Serial.println(F("Car → c, Ship → s, Plane → p, Copter → o"));
-    Serial.print("current bid: ");
+    Serial.print(F("current bid: "));
     Serial.println(auction_bid);
 
     clearBuffer();
 
-    auction_time = 20000 + millis();
+    auction_time = 15000 + millis();
     //Serial.println(auction_time);
     
     while(Serial.available() == 0){
@@ -299,83 +326,98 @@ void Game::auction(){
       
       if(currentTime >= auction_time){
         Serial.println("");
-        Serial.println("The auction ended!");
-        Serial.print("Total Bid: ");
+        Serial.println(F("The auction ended!"));
+
+        if(auction_bid == 20){
+          Serial.println(F("Nobody won the auction"));
+          return;
+        }
+            
+        Serial.print(F("Total Bid: "));
         Serial.println(auction_bid);
-        Serial.print("Winner of the auction is: ");
+        Serial.print(F("Winner of the auction is: "));
 
         if(currentBidder == 'c'){
-          Serial.println("Car");
+          Serial.println(F("Car"));
           car -= auction_bid;
+          propertyOwners[currentPosition] == 'c';
           return;
         }
         else if(currentBidder == 's'){
-          Serial.println("Ship");
+          Serial.println(F("Ship"));
           ship -= auction_bid;
+          propertyOwners[currentPosition] == 's';
           return;
         }
         else if(currentBidder == 'p'){
-          Serial.println("Plane");
+          Serial.println(F("Plane"));
           plane -= auction_bid;
+          propertyOwners[currentPosition] == 'p';
           return;
         }
         else if(currentBidder == 'o'){
-          Serial.println("Copter");
+          Serial.println(F("Copter"));
           copter -= auction_bid;
+          propertyOwners[currentPosition] == 'o';
           return;
         }
       }
     }
     
     auction_input = Serial.read();
-    //Serial.println(auction_input);
-    /*
-    if(auction_input == '0'){
-        Serial.println("The auction ended!");
-        Serial.print("Winner of the auction is: ");
 
-        if(currentBidder == 'c'){
-          Serial.println("Car");
-          car -= auction_bid;
-          return;
-        }
-        else if(currentBidder == 's'){
-          Serial.println("Ship");
-          ship -= auction_bid;
-          return;
-        }
-        else if(currentBidder == 'p'){
-          Serial.println("Plane");
-          plane -= auction_bid;
-          return;
-        }
-        else if(currentBidder == 'o'){
-          Serial.println("Copter");
-          copter -= auction_bid;
-          return;
-        }
-    }
-    */
-    if(auction_input == 'c' or auction_input == 'C'){
-      auction_bid += 20;
-      currentBidder = 'c';
-    }
-    else if(auction_input == 's' or auction_input == 'S'){
-      auction_bid += 20;
-      currentBidder = 's';
-    }
-    else if(auction_input == 'p' or auction_input == 'P'){
-      auction_bid += 20;
-      currentBidder = 'p';
-    }
-    else if(auction_input == 'o' or auction_input == 'O'){
-      auction_bid += 20;
-      currentBidder = 'o';
-    }
-    else{
-      Serial.println("Invalid input!");
-    }
+   if(nop == 2){
+      if(auction_input == 'c' or auction_input == 'C'){
+        auction_bid += 20;
+        currentBidder = 'c';
+      }
+      else if(auction_input == 's' or auction_input == 'S'){
+        auction_bid += 20;
+        currentBidder = 's';
+      }
+      else{
+        Serial.println(F("Invalid input!"));
+      }
+   }
+   else if(nop == 3){
+      if(auction_input == 'c' or auction_input == 'C'){
+        auction_bid += 20;
+        currentBidder = 'c';
+      }
+      else if(auction_input == 's' or auction_input == 'S'){
+        auction_bid += 20;
+        currentBidder = 's';
+      }
+      else if(auction_input == 'p' or auction_input == 'P'){
+        auction_bid += 20;
+        currentBidder = 'p';
+      }
+      else{
+        Serial.println(F("Invalid input!"));
+      }
+   }
+   else{
+      if(auction_input == 'c' or auction_input == 'C'){
+        auction_bid += 20;
+        currentBidder = 'c';
+      }
+      else if(auction_input == 's' or auction_input == 'S'){
+        auction_bid += 20;
+        currentBidder = 's';
+      }
+      else if(auction_input == 'p' or auction_input == 'P'){
+        auction_bid += 20;
+        currentBidder = 'p';
+      }
+      else if(auction_input == 'o' or auction_input == 'O'){
+        auction_bid += 20;
+        currentBidder = 'o';
+      }
+      else{
+        Serial.println(F("Invalid input!"));
+      }
   }
+ }
 }
 
 
