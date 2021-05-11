@@ -30,7 +30,8 @@ To start off with Ardupoly you need to have the latest and most excellent Arduin
 + Arduino Nano
 + Arduino UNO
 + Arduino Mega
-+ Arduino Pro Mini
+
+> We recommend you to use Arduino Nano
 
 > Your board should at least have 2 KB SRAM and 16 KB Flash memory
 
@@ -50,6 +51,8 @@ The community is welcome to contribute in enhancing Ardupoly and help us make it
 [Ardupoly Wiki](https://github.com/CodedGame56/Ardupoly/wiki)
 
 [Arduino Official](https://arduino.cc)
+
+[Ardupoly Discussion](https://github.com/CodedGamer56/Ardupoly/discussions)
 
 ## Credits
 
