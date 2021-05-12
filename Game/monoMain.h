@@ -28,6 +28,11 @@ class Game{                                               //Game class that mana
     char activePlayers[4];
     const char allPlayers[4] PROGMEM = {'c','s','p','o'};
     char propertyOwners[36]; 
+
+    bool carJail = false;
+    bool shipJail = false;
+    bool planeJail = false;
+    bool copterJail = false;
     
     short int currentPosition;
     short int propertyState[36];
@@ -40,10 +45,10 @@ class Game{                                               //Game class that mana
     void buyProperty();
     bool placeCheck();
     void propertyRent();       //propertyID is the name points to the property
-    short int getRentLevel(short int* pos);
+    short int getRentLevel(short int pos);
     void auction();
     void incrementPosition(short int &incrementVal);
-    
+    void jailCheck(short int* dice1, short int* dice2);
 };
 
 void clearBuffer();

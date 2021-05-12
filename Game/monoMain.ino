@@ -362,11 +362,11 @@ void Game::propertyRent(){
   Serial.println(rentVal);
 }
 
-short int Game::getRentLevel(short int* pos){
-  if(rentLevels[*pos] != 5){
-    rentLevels[*pos] += 1;
+short int Game::getRentLevel(short int pos){
+  if(rentLevels[pos] != 5){
+    rentLevels[pos] += 1;
   }
-  return rentLevels[*pos];
+  return rentLevels[pos];
 }
 
 bool Game::placeCheck(){
@@ -379,33 +379,23 @@ bool Game::placeCheck(){
   }
   else if(currentPosition == 7 or currentPosition == 16 or currentPosition == 25 or currentPosition == 34){
     return true;
-    /*
-    if(currentPlayer == 'c'){
-      car -= 100;                        
-    }
-    else if(currentPlayer == 's'){
-      ship -= 100;                        
-    }
-    else if(currentPlayer == 'p'){
-      plane -= 100;                        
-    }
-    else if(currentPlayer == 'o'){
-      copter -= 100;                        
-    }
-    */
   }
   else if(currentPosition == 27){
     if(currentPlayer == 'c'){
       carPos = 9;
+      carJail = true;
     }
     if(currentPlayer == 's'){
       shipPos = 9;
+      shipJail = true;
     }
     if(currentPlayer == 'p'){
       planePos = 9;
+      planeJail = true;
     }
     if(currentPlayer == 'o'){
       copterPos = 9;
+      copterJail = true;
     }
     return true;
   }
@@ -414,24 +404,32 @@ bool Game::placeCheck(){
   }
 }
 
-void Game::incrementPosition(short int &incrementVal){
+void Game::incrementPosition(short int &incrementVal){  
   if(currentPlayer == 'c'){
-    carPos += (short int) incrementVal;  
+    if(!carJail){
+      carPos += (short int) incrementVal;  
+    }
     currentPosition = carPos;
   }
   
   if(currentPlayer == 's'){
-    shipPos += (short int) incrementVal;  
+    if(!shipJail){
+      shipPos += (short int) incrementVal;  
+    }
     currentPosition = shipPos;
   }
   
   if(currentPlayer == 'p'){
-    planePos += (short int) incrementVal;  
+    if(!planeJail){
+      planePos += (short int) incrementVal;  
+    }
     currentPosition = planePos;
   }
   
   if(currentPlayer == 'o'){
-    copterPos += (short int) incrementVal;  
+    if(!copterJail){
+      copterPos += (short int) incrementVal;  
+    }
     currentPosition = copterPos;
   }
 }
@@ -558,6 +556,38 @@ void Game::auction(){
  }
 }
 
+void Game::jailCheck(short int* dice1, short int* dice2){
+  switch(currentPlayer){
+    case 'c':
+             if(carJail == true){
+              if(*dice1 == *dice2){
+                carJail = false;
+              }
+            }
+            break;
+    case 's':
+             if(shipJail == true){
+              if(*dice1 == *dice2){
+                shipJail = false;
+              }
+             }
+             break;
+    case 'p':
+             if(planeJail == true){
+              if(*dice1 == *dice2){
+                planeJail = false;
+              }
+            }
+            break;
+    case 'o':
+             if(copterJail == true){
+              if(*dice1 == *dice2){
+                copterJail = false;
+              }
+            }
+            break;
+  }
+}
 
 void clearBuffer(){
   while(Serial.available())                                       //clearing the serial buffer

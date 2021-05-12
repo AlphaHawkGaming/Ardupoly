@@ -4,7 +4,8 @@ Game game;
 void setup() {
  Serial.begin(115200);          //Starting the Serial monitor
  randomSeed(analogRead(0));     //this line of code contributes in the generation of random dice value
-
+ randomSeed(analogRead(4));
+ 
   while(true){                  //entry point
       Serial.println(F("            ARDUPOLY             " ));
       Serial.println(F(" ________________________________ "));
@@ -99,12 +100,18 @@ void loop() {
   diceVal2 = random(1, 6);
   
   diceVal = diceVal1 + diceVal2;
+
+  Serial.print(F("DiceVals: "));                                 //temporary part
+  Serial.print(diceVal1);
+  Serial.print(F(", "));
+  Serial.println(diceVal2);
+  Serial.println(F(""));
+  
+  game.jailCheck(&diceVal1, &diceVal2);
   
   game.incrementPosition(diceVal);                               //updating the player's position in the game
 
   game.switchPlayerPlaces(); 
-  
- 
   
   Serial.print(F("Place: "));                      
   Serial.println(game.playerPlace);
