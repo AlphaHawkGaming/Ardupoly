@@ -52,23 +52,31 @@ void loop() {
    if(game.activePlayers[i] == 'c'){
       Serial.print(F("|Car: "));
       Serial.print(car);
-      Serial.println(F("                       |"));
+      Serial.print(F(", Debt: "));
+      Serial.print(carDebt);
+      Serial.println(F("              |"));
       
     }
     else if(game.activePlayers[i] == 's'){
       Serial.print(F("|Ship: "));
       Serial.print(ship);
-      Serial.println(F("                      |"));
+      Serial.print(F(", Debt: "));
+      Serial.print(shipDebt);
+      Serial.println(F("             |"));
     }  
     else if(game.activePlayers[i] == 'p'){
       Serial.print(F("|Plane: "));
       Serial.print(plane);
-      Serial.println(F("                     |"));
+      Serial.print(F(", Debt: "));
+      Serial.print(planeDebt);
+      Serial.println(F("            |"));
     }
     else if(game.activePlayers[i] == 'o'){
       Serial.print(F("|Copter: "));
       Serial.print(copter);
-      Serial.println(F("                    |"));
+      Serial.print(F(", Debt: "));
+      Serial.print(copterDebt);
+      Serial.println(F("           |"));
     }
   }
 
@@ -111,7 +119,7 @@ void loop() {
   
   game.incrementPosition(diceVal);                               //updating the player's position in the game
 
-  game.switchPlayerPlaces(); 
+  game.switchPlayerPlaces('p'); 
   
   Serial.print(F("Place: "));                      
   Serial.println(game.playerPlace);
@@ -121,6 +129,8 @@ void loop() {
     game.buyProperty();                                           //prompting the player to buy the property he landed on
   }
 
+  game.debtCheck();
+  
   Serial.println(F("-------------------------------"));
   game.moveToNextPlayer();                                      //updating the game 
 

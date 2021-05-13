@@ -1,132 +1,208 @@
-void Game::switchPlayerPlaces(){
-  switch(currentPosition){
-    case 1:
-         playerPlace = "Old kent road";
-         break;
-    case 2:
-         playerPlace = "Chance";
-         break;
-    case 3:
-         playerPlace = "Whitechapel Road";
-         break;
-    case 4:
-         playerPlace = "Chance";
-         break;
-    case 5:
-         playerPlace = "The Angel, Islington";
-         break;
-    case 6:
-         playerPlace = "Euston Road";
-         break;
-    case 7:
-         playerPlace = "Auction";
-         break;
-    case 8:
-         playerPlace = "Pentonville Road";
-         break;
-    case 9:
-         playerPlace = "Just Visiting";
-         break;
-    case 10:
-         playerPlace = "Pall Mall";
-         break;
-    case 11:
-         playerPlace = "Chance";
-         break;
-    case 12:
-         playerPlace = "Whitehall";
-         break;
-    case 13:
-         playerPlace = "Northumberland Avenue";
-         break;
-    case 14:
-         playerPlace = "Bow Street";
-         break; 
-    case 15:
-         playerPlace = "Marlborough Street";
-         break;
-    case 16:
-         playerPlace = "Auction";
-         break;
-    case 17:
-         playerPlace = "Vine Street";
-         break;
-    case 18:
-         playerPlace = "Free Parking";
-         break;
-    case 19:
-         playerPlace = "Strand";
-         break;
-    case 20:
-         playerPlace = "Chance";
-         break;
-    case 21:
-         playerPlace = "Fleet Street";
-         break;
-    case 22:
-         playerPlace = "Trafalgar Square";
-         break;
-    case 23:
-         playerPlace = "Leicester Square";
-         break;
-    case 24:
-         playerPlace = "Coventry Street";
-         break;
-    case 25:
-         playerPlace = "Auction";
-         break;
-    case 26:
-         playerPlace = "Picadilly";
-         break;
-    case 27:
-         playerPlace = "Jail";
-         break;
-    case 28:
-         playerPlace = "Regent Street";
-         break;
-    case 29:
-         playerPlace = "Chance";
-         break;
-    case 30:
-         playerPlace = "Oxford Street";
-         break;             
-    case 31:
-         playerPlace = "Bond Street";
-         break; 
-    case 32:
-         playerPlace = "Chance";
-         break;
-    case 33:
-         playerPlace = "Park Lane";
-         break;
-    case 34:
-         playerPlace = "Auction";
-         break;
-    case 35:
-         playerPlace = "Mayfair";
-         break;
-    default:
-          playerPlace = "Start";
-          currentPosition = 0;
-          
-          if(currentPlayer == 'c'){
-            car += 200;
-            carPos = 0;
-          }
-          else if(currentPlayer == 's'){
-            ship += 200;
-            shipPos = 0;
-          }
-          else if(currentPlayer == 'p'){
-            plane += 200;
-            planePos = 0;
-          }
-          else if(currentPlayer == 'o'){
-            copter += 200;
-            copterPos = 0;
-          }
-          break;
+String Game::switchPlayerPlaces(char attrib){
+  if(attrib == 'p'){
+    switch(currentPosition){
+      case 1:
+           playerPlace = "Old kent road";
+           break;
+      case 2:
+           playerPlace = "Chance";
+           break;
+      case 3:
+           playerPlace = "Whitechapel Road";
+           break;
+      case 4:
+           playerPlace = "Chance";
+           break;
+      case 5:
+           playerPlace = "The Angel, Islington";
+           break;
+      case 6:
+           playerPlace = "Euston Road";
+           break;
+      case 7:
+           playerPlace = "Auction";
+           break;
+      case 8:
+           playerPlace = "Pentonville Road";
+           break;
+      case 9:
+           playerPlace = "Just Visiting";
+           break;
+      case 10:
+           playerPlace = "Pall Mall";
+           break;
+      case 11:
+           playerPlace = "Chance";
+           break;
+      case 12:
+           playerPlace = "Whitehall";
+           break;
+      case 13:
+           playerPlace = "Northumberland Avenue";
+           break;
+      case 14:
+           playerPlace = "Bow Street";
+           break; 
+      case 15:
+           playerPlace = "Marlborough Street";
+           break;
+      case 16:
+           playerPlace = "Auction";
+           break;
+      case 17:
+           playerPlace = "Vine Street";
+           break;
+      case 18:
+           playerPlace = "Free Parking";
+           break;
+      case 19:
+           playerPlace = "Strand";
+           break;
+      case 20:
+           playerPlace = "Chance";
+           break;
+      case 21:
+           playerPlace = "Fleet Street";
+           break;
+      case 22:
+           playerPlace = "Trafalgar Square";
+           break;
+      case 23:
+           playerPlace = "Leicester Square";
+           break;
+      case 24:
+           playerPlace = "Coventry Street";
+           break;
+      case 25:
+           playerPlace = "Auction";
+           break;
+      case 26:
+           playerPlace = "Picadilly";
+           break;
+      case 27:
+           playerPlace = "Jail";
+           break;
+      case 28:
+           playerPlace = "Regent Street";
+           break;
+      case 29:
+           playerPlace = "Chance";
+           break;
+      case 30:
+           playerPlace = "Oxford Street";
+           break;             
+      case 31:
+           playerPlace = "Bond Street";
+           break; 
+      case 32:
+           playerPlace = "Chance";
+           break;
+      case 33:
+           playerPlace = "Park Lane";
+           break;
+      case 34:
+           playerPlace = "Auction";
+           break;
+      case 35:
+           playerPlace = "Mayfair";
+           break;
+      default:
+            playerPlace = "Start";
+            currentPosition = 0;
+            
+            if(currentPlayer == 'c'){
+              car += 200;
+              carPos = 0;
+            }
+            else if(currentPlayer == 's'){
+              ship += 200;
+              shipPos = 0;
+            }
+            else if(currentPlayer == 'p'){
+              plane += 200;
+              planePos = 0;
+            }
+            else if(currentPlayer == 'o'){
+              copter += 200;
+              copterPos = 0;
+            }
+            break;
+    }
+
+    return "";
   }
+  else if(attrib == 'a'){
+    switch(*auction_pointer){
+      case 1:
+           return "Old kent road";
+           break;
+      case 3:
+           return "Whitechapel Road";
+           break;
+      case 5:
+           return "The Angel, Islington";
+           break;
+      case 6:
+           return "Euston Road";
+           break;
+      case 8:
+           return "Pentonville Road";
+           break;
+      case 10:
+           return "Pall Mall";
+           break;
+      case 12:
+           return "Whitehall";
+           break;
+      case 13:
+           return "Northumberland Avenue";
+           break;
+      case 14:
+           return "Bow Street";
+           break; 
+      case 15:
+           return "Marlborough Street";
+           break;
+      case 17:
+           return "Vine Street";
+           break;
+      case 19:
+           return "Strand";
+           break;
+      case 21:
+           return "Fleet Street";
+           break;
+      case 22:
+           return "Trafalgar Square";
+           break;
+      case 23:
+           return "Leicester Square";
+           break;
+      case 24:
+           return "Coventry Street";
+           break;
+      case 26:
+           return "Picadilly";
+           break;
+      case 28:
+           return "Regent Street";
+           break;
+      case 30:
+           return "Oxford Street";
+           break;             
+      case 31:
+           return "Bond Street";
+           break; 
+      case 33:
+           return "Park Lane";
+           break;
+      case 35:
+           return "Mayfair";
+           break;
+    }
+  }
+  
+  return "";
 }
 
 void Game::moveToNextPlayer(){
@@ -180,25 +256,49 @@ void Game::buyProperty(){
       Serial.print(F("Your money balance: "));
 
       if(currentPlayer == 'c'){
-        car = car - propertyPrice[currentPosition];
+        if(car > propertyPrice[currentPosition]){
+          car = car - propertyPrice[currentPosition];
+        }
+        else{
+          carDebt += propertyPrice[currentPosition] - car;
+          car = 0;
+        }
         propertyState[currentPosition] = 1;
         propertyOwners[currentPosition] = 'c';
         Serial.println(car);
       }
       else if(currentPlayer == 's'){
-        ship = ship - propertyPrice[currentPosition];
+        if(ship > propertyPrice[currentPosition]){
+          ship = ship - propertyPrice[currentPosition];
+        }
+        else{
+          shipDebt += propertyPrice[currentPosition] - ship;
+          ship = 0;
+        }
         propertyState[currentPosition] = 1;
         propertyOwners[currentPosition] = 's';
         Serial.println(ship);
       }
       else if(currentPlayer == 'p'){
-        plane = plane - propertyPrice[currentPosition];
+        if(plane > propertyPrice[currentPosition]){
+          plane = plane - propertyPrice[currentPosition];
+        }
+        else{
+          planeDebt += propertyPrice[currentPosition] - plane;
+          plane = 0;
+        }
         propertyState[currentPosition] = 1;
         propertyOwners[currentPosition] = 'p';
         Serial.println(plane);
       }
       else if(currentPlayer == 'o'){
-        copter = copter - propertyPrice[currentPosition];
+        if(copter > propertyPrice[currentPosition]){
+          copter = copter - propertyPrice[currentPosition];
+        }
+        else{
+          copterDebt += propertyPrice[currentPosition] - copter;
+          copter = 0;
+        }
         propertyState[currentPosition] = 1;
         propertyOwners[currentPosition] = 'o';
         Serial.println(copter);
@@ -210,7 +310,7 @@ void Game::buyProperty(){
       Serial.println(F("Warning: if no one bids within 20 seconds, the auction will end"));
       Serial.println(F("Type the values below that correspond to your player name to increase the auction bid"));
       Serial.println(F("Auction starts now!"));
-      auction();
+      auction('a');
     }
     Serial.println("");
   }
@@ -333,16 +433,40 @@ void Game::propertyRent(){
   }
 
   if(currentPlayer == 'c'){
-    car -= rentVal;
+    if(car > rentVal){
+      car -= rentVal;  
+    }
+    else{
+      carDebt += rentVal - car;
+      car = 0;
+    }
   }
   else if(currentPlayer == 's'){
-    ship -= rentVal;
+    if(ship > rentVal){
+      ship -= rentVal;
+    }
+    else{
+      shipDebt += rentVal - ship;
+      ship = 0;
+    }
   }
   else if(currentPlayer == 'p'){
-    plane -= rentVal;
+    if(plane > rentVal){
+      plane -= rentVal;
+    }
+    else{
+      planeDebt += rentVal - plane;
+      plane = 0;
+    }
   }
   else if(currentPlayer == 'o'){
-    copter -= rentVal;
+    if(copter > rentVal){
+      copter -= rentVal;
+    }
+    else{
+      copterDebt += rentVal - copter;
+      copter = 0;
+    }
   }
   
   if(propertyOwners[currentPosition] == 'c'){
@@ -378,7 +502,33 @@ bool Game::placeCheck(){
     //goto chance  
   }
   else if(currentPosition == 7 or currentPosition == 16 or currentPosition == 25 or currentPosition == 34){
-    return true;
+    Serial.println(F("Auction any of the properties below, to choose a property enter the number referring to the property"));
+    for(int i=0; i<36; i++){
+        if(propertyState[i] == 0){
+          if(i == 18 or i == 9 or i == 0 or i == 2 or i == 4 or i == 11 or i == 20 or i == 29 or i == 32 or i == 7 or i == 16 or i == 25 or i == 27 or i == 34){}
+          else{
+            auction_pointer = &i;
+            Serial.print(i);
+            Serial.print(F(": "));
+            Serial.println(switchPlayerPlaces('a'));
+          }
+        }
+      }
+      
+    while(true){
+      clearBuffer();
+      while(Serial.available() == 0){}
+  
+      *auction_pointer = Serial.parseInt();
+      
+      if(*auction_pointer == 18 or *auction_pointer == 9 or *auction_pointer == 0 or *auction_pointer == 2 or *auction_pointer == 4 or *auction_pointer == 11 or *auction_pointer == 20 or *auction_pointer == 29 or *auction_pointer == 32 or *auction_pointer == 7 or *auction_pointer == 16 or *auction_pointer == 25 or *auction_pointer == 34){
+        Serial.println(F("Invalid Input!"));
+      }
+      else{
+        break;
+      }
+    }
+    auction('u');
   }
   else if(currentPosition == 27){
     if(currentPlayer == 'c'){
@@ -434,7 +584,7 @@ void Game::incrementPosition(short int &incrementVal){
   }
 }
 
-void Game::auction(){
+void Game::auction(char auction_attrib){
   clearBuffer();
 
   char currentBidder;
@@ -473,28 +623,100 @@ void Game::auction(){
         Serial.println(auction_bid);
         Serial.print(F("Winner of the auction is: "));
 
-        if(currentBidder == 'c'){
-          Serial.println(F("Car"));
-          car -= auction_bid;
-          propertyOwners[currentPosition] == 'c';
+        if(auction_attrib == 'a'){
+          if(currentBidder == 'c'){
+            if(car > auction_bid){
+              car -= auction_bid;
+            }
+            else{
+              carDebt += auction_bid - car;
+              car = 0;
+            }
+            Serial.println(F("Car"));
+            propertyOwners[currentPosition] == 'c';
+          }
+          else if(currentBidder == 's'){
+            if(ship > auction_bid){
+              ship -= auction_bid;
+            }
+            else{
+              shipDebt += auction_bid - ship;
+              ship = 0;
+            }
+            Serial.println(F("Ship"));
+            propertyOwners[currentPosition] == 's';
+          }
+          else if(currentBidder == 'p'){
+            if(plane > auction_bid){
+              plane -= auction_bid;
+            }
+            else{
+              planeDebt += auction_bid - plane;
+              plane = 0;
+            }
+            Serial.println(F("Plane"));
+            propertyOwners[currentPosition] == 'p';
+          }
+          else if(currentBidder == 'o'){
+            if(copter > auction_bid){
+              copter -= auction_bid;
+            }
+            else{
+              copterDebt += auction_bid - copter;
+              copter = 0;
+            }
+            Serial.println(F("Copter"));
+            propertyOwners[currentPosition] == 'o';
+          }
+          propertyState[currentPosition] = 1;
           return;
         }
-        else if(currentBidder == 's'){
-          Serial.println(F("Ship"));
-          ship -= auction_bid;
-          propertyOwners[currentPosition] == 's';
-          return;
-        }
-        else if(currentBidder == 'p'){
-          Serial.println(F("Plane"));
-          plane -= auction_bid;
-          propertyOwners[currentPosition] == 'p';
-          return;
-        }
-        else if(currentBidder == 'o'){
-          Serial.println(F("Copter"));
-          copter -= auction_bid;
-          propertyOwners[currentPosition] == 'o';
+        else if(auction_attrib == 'u'){
+          if(currentBidder == 'c'){
+            if(car > auction_bid){
+              car -= auction_bid;
+            }
+            else{
+              carDebt += auction_bid - car;
+              car = 0;
+            }
+            Serial.println(F("Car"));
+            propertyOwners[*auction_pointer] == 'c';
+          }
+          else if(currentBidder == 's'){
+            if(ship > auction_bid){
+              ship -= auction_bid;
+            }
+            else{
+              shipDebt += auction_bid - ship;
+              ship = 0;
+            }
+            Serial.println(F("Ship"));
+            propertyOwners[*auction_pointer] == 's';
+          }
+          else if(currentBidder == 'p'){
+            if(plane > auction_bid){
+              plane -= auction_bid;
+            }
+            else{
+              planeDebt += auction_bid - plane;
+              plane = 0;
+            }
+            Serial.println(F("Plane"));
+            propertyOwners[*auction_pointer] == 'p';
+          }
+          else if(currentBidder == 'o'){
+            if(copter > auction_bid){
+              copter -= auction_bid;
+            }
+            else{
+              copterDebt += auction_bid - copter;
+              copter = 0;
+            }
+            Serial.println(F("Copter"));
+            propertyOwners[*auction_pointer] == 'o';
+          }
+          propertyState[*auction_pointer] = 1;
           return;
         }
       }
@@ -587,6 +809,53 @@ void Game::jailCheck(short int* dice1, short int* dice2){
             }
             break;
   }
+}
+
+void Game::debtCheck(){
+  if(car > 0 && carDebt != 0){
+    if(car > carDebt){
+      car -= carDebt;
+      carDebt = 0;
+    }
+    else{
+      carDebt -= car;
+      car = 0;
+    }
+  }
+  
+  if(ship > 0 && shipDebt != 0){
+    if(ship > shipDebt){
+      ship -= shipDebt;
+      shipDebt = 0;
+    }
+    else{
+      shipDebt -= ship;
+      ship = 0;
+    }
+  }
+
+  if(plane > 0 && planeDebt != 0){
+    if(plane > planeDebt){
+      plane -= planeDebt;
+      planeDebt = 0;
+    }
+    else{
+      planeDebt -= plane;
+      plane = 0;
+    }
+  }
+
+  if(copter > 0 && copterDebt != 0){
+    if(copter > copterDebt){
+      copter -= copterDebt;
+      copterDebt = 0;
+    }
+    else{
+      copterDebt -= copter;
+      copter = 0;
+    }
+  }
+  
 }
 
 void clearBuffer(){
