@@ -48,7 +48,7 @@ The community is welcome to contribute in enhancing Ardupoly and help us make it
 
 ## Useful Links
 
-[Ardupoly Wiki](https://github.com/CodedGame56/Ardupoly/wiki)
+[Ardupoly Wiki](https://github.com/CodedGamer56/Ardupoly/wiki)
 
 [Arduino Official](https://arduino.cc)
 
