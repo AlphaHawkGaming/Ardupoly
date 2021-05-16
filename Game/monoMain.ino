@@ -20,7 +20,7 @@ String Game::switchPlayerPlaces(char attrib){
            playerPlace = "Euston Road";
            break;
       case 7:
-           playerPlace = "Auction";
+           playerPlace = "Location";
            break;
       case 8:
            playerPlace = "Pentonville Road";
@@ -47,7 +47,7 @@ String Game::switchPlayerPlaces(char attrib){
            playerPlace = "Marlborough Street";
            break;
       case 16:
-           playerPlace = "Auction";
+           playerPlace = "Location";
            break;
       case 17:
            playerPlace = "Vine Street";
@@ -74,7 +74,7 @@ String Game::switchPlayerPlaces(char attrib){
            playerPlace = "Coventry Street";
            break;
       case 25:
-           playerPlace = "Auction";
+           playerPlace = "Location";
            break;
       case 26:
            playerPlace = "Picadilly";
@@ -101,7 +101,7 @@ String Game::switchPlayerPlaces(char attrib){
            playerPlace = "Park Lane";
            break;
       case 34:
-           playerPlace = "Auction";
+           playerPlace = "Location";
            break;
       case 35:
            playerPlace = "Mayfair";
@@ -498,8 +498,8 @@ bool Game::placeCheck(){
     return true;
   }
   else if(currentPosition == 2 or currentPosition == 4 or currentPosition == 11 or currentPosition == 20 or currentPosition == 29 or currentPosition == 32){
-    return true; //remove this later
-    //goto chance  
+    int sumNum = 45;
+    chanceID(sumNum);
   }
   else if(currentPosition == 7 or currentPosition == 16 or currentPosition == 25 or currentPosition == 34){
     Serial.println(F("Auction any of the properties below, to choose a property enter the number referring to the property"));
@@ -529,6 +529,7 @@ bool Game::placeCheck(){
       }
     }
     auction('u');
+    return true;
   }
   else if(currentPosition == 27){
     if(currentPlayer == 'c'){
