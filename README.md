@@ -4,7 +4,7 @@
 
 ## Welcome to Ardupoly!
 
-Board games have existed for years and they have even made it through the revolution of computer games. Although they are really unfamous these days, Ardupoly has brought back everybody's favorite Monopoly back into the present with the help of technology.
+Board games have existed for years and they have even made it through the revolution of computer games. Although they are really infamous these days, Ardupoly has brought back everybody's favorite Monopoly back into the present with the help of technology.
 
 ```Ardupoly is not similar to the actual Monopoly and may contain slight modifications```
 
