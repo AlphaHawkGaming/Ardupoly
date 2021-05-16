@@ -54,6 +54,8 @@ The community is welcome to contribute in enhancing Ardupoly and help us make it
 
 [Ardupoly Discussion](https://github.com/CodedGamer56/Ardupoly/discussions)
 
+[Ardupoly 1.0.0-Beta](https://github.com/CodedGamer56/Ardupoly/releases/tag/v1.0.0-beta)
+
 ## Credits
 
 + Arduino
