@@ -54,7 +54,9 @@ To start off with Ardupoly you need to have the latest and most excellent Arduin
 + Redistribution without legal terms
 + Reproduction without legal terms
 
-```Note that we are not liable for any damage caused by our work, hereby you accept to take all the responsibility on your own```
+```Note that we are not liable for any damage caused by our work``` 
+
+```hereby you accept to take all the responsibility on your own```
 
 ## Contributing to Ardupoly
 
