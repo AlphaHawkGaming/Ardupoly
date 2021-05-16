@@ -45,14 +45,14 @@ To start off with Ardupoly you need to have the latest and most excellent Arduin
 **Permissions Granted**: 
 + Distribution with legal terms
 + Contribution with legal terms
-+ Personnel Use with Limitations
++ Personal Use with Limitations
 
 **Restrictions**:
 + Commercial Use
 + Trademark Use
 + Patent Use
-+ Redistribution without legal terms
-+ Reproduction without legal terms
++ Redistribution
++ Reproduction 
 
 ```Note that we are not liable for any damage caused by our work``` 
 
