@@ -52,6 +52,8 @@ class Game{                                               //Game class that mana
     void propertyRent();       //propertyID is the name points to the property
     void debtCheck();
     String switchPlayerPlaces(char attrib);
+    void decreasePlayerMoney(short int* value, char attrib);
+    bool doublesCheck(short int* val1, short int* val2);
     short int getRentLevel(short int pos);
     void auction(char auction_attrib);
     void incrementPosition(short int &incrementVal);

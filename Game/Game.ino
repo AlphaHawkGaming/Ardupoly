@@ -1,4 +1,5 @@
 #include"monoMain.h"
+
 Game game;
 
 void setup() {
@@ -108,27 +109,53 @@ void loop() {
   diceVal2 = random(1, 6);
   
   diceVal = diceVal1 + diceVal2;
-
+  
   Serial.print(F("DiceVals: "));                                 //temporary part
   Serial.print(diceVal1);
   Serial.print(F(", "));
   Serial.println(diceVal2);
   Serial.println(F(""));
-  
-  game.jailCheck(&diceVal1, &diceVal2);
-  
-  game.incrementPosition(diceVal);                               //updating the player's position in the game
 
-  game.switchPlayerPlaces('p'); 
+  bool jailState = false;
   
-  Serial.print(F("Place: "));                      
-  Serial.println(game.playerPlace);
+  if(game.doublesCheck(&diceVal1, &diceVal2)){
+      Serial.println(F("You rolled a double, you are rolling the dice again"));
+      diceVal1 = random(1, 6);
+      diceVal2 = random(1, 6);
 
-  if(!(game.placeCheck())){
-    clearBuffer();
-    game.buyProperty();                                           //prompting the player to buy the property he landed on
+      Serial.print(F("DiceVals: "));                                 //temporary part
+      Serial.print(diceVal1);
+      Serial.print(F(", "));
+      Serial.println(diceVal2);
+      Serial.println(F(""));
+
+      if(game.doublesCheck(&diceVal1, &diceVal2)){
+        Serial.println(F("You are going to Jail as you rolled two doubles"));
+        diceVal = diceVal1 + diceVal2;
+        game.jailCheck(&diceVal1, &diceVal2);
+        jailState = true;
+      }
+      else{
+        Serial.println(F("Oof! You escaped from going to Jail"));
+      }
   }
 
+  if(jailState == false){
+    game.jailCheck(&diceVal1, &diceVal2);
+    
+    game.incrementPosition(diceVal);                               //updating the player's position in the game
+  
+    game.switchPlayerPlaces('p'); 
+    
+    Serial.print(F("Place: "));                      
+    Serial.println(game.playerPlace);
+  
+    if(!(game.placeCheck())){
+      clearBuffer();
+      game.buyProperty();                                           //prompting the player to buy the property he landed on
+    }
+  }
+  
   game.debtCheck();
   
   Serial.println(F("-------------------------------"));
