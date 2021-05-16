@@ -1,8 +1,6 @@
 # **Ardupoly**
 
-[![Issue](https://img.shields.io/github/issues/CodedGamer56/Ardupoly)](https://github.com/CodedGamer56/Ardupoly/issues) ![Version](https://img.shields.io/badge/Version-1.0.0-blue) ![License](https://img.shields.io/github/license/CodedGamer56/Ardupoly)
-
-
+[![Issue](https://img.shields.io/github/issues/CodedGamer56/Ardupoly)](https://github.com/CodedGamer56/Ardupoly/issues) ![Version](https://img.shields.io/badge/Version-1.0.0-blue)
 
 ## Welcome to Ardupoly!
 
