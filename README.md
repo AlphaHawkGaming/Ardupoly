@@ -1,6 +1,6 @@
 # **Ardupoly**
 
-[![Issue](https://img.shields.io/github/issues/CodedGamer56/Ardupoly)](https://github.com/CodedGamer56/Ardupoly/issues) ![Version](https://img.shields.io/badge/Version-1.0.0-blue) ![Support](https://img.shields.io/badge/Supports-Arduino%201.8.15-orange) ![Release](https://img.shields.io/badge/Release-Beta-yellow)
+[![Issue](https://img.shields.io/github/issues/AlphaHGaming/Ardupoly)](https://github.com/CodedGamer56/Ardupoly/issues) ![Version](https://img.shields.io/badge/Version-1.0.0-blue) ![Support](https://img.shields.io/badge/Supports-Arduino%201.8.15-orange) ![Release](https://img.shields.io/badge/Release-Beta-yellow)
 
 ## Welcome to Ardupoly!
 
