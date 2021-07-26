@@ -1,3 +1,8 @@
+/*
+ Copyright (c) 2021 CodedGamer56
+ Licensed under Apache-2.0 license
+*/
+
 short int car;
 short int ship;
 short int plane;

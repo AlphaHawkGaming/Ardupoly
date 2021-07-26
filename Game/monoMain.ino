@@ -1,3 +1,8 @@
+/*
+ Copyright (c) 2021 CodedGamer56
+ Licensed under Apache-2.0 license
+*/
+
 #define NO_DATA '0'
 
 String Game::switchPlayerPlaces(char attrib){
