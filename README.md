@@ -39,7 +39,7 @@ To start off with Ardupoly you need to have the latest and most excellent Arduin
 
 ---
 
-## Licensed under Apache 2.0
+## Licensed under Apache-2.0 license
 
 See the license file for more details
 
