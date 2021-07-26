@@ -39,26 +39,9 @@ To start off with Ardupoly you need to have the latest and most excellent Arduin
 
 ---
 
-## License
+## Licensed under Apache 2.0
 
-*No information from this project may be reproduced, redistributed or copied without the legal permission from AlphaHGaming.* 
-*All rights reserved under AlphaHGaming*.
-
-**Permissions Granted**: 
-+ Distribution with legal terms
-+ Contribution with legal terms
-+ Personal Use with Limitations
-
-**Restrictions**:
-+ Commercial Use
-+ Trademark Use
-+ Patent Use
-+ Redistribution
-+ Reproduction 
-
-> Note that we are not liable for any damage caused by our work
-
-> hereby you accept to take all the responsibility on your own
+See the license file for more details
 
 ## Contributing to Ardupoly
 
