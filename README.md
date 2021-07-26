@@ -29,11 +29,7 @@ To start off with Ardupoly you need to have the latest and most excellent Arduin
 
 ## Supported Arduino Boards
 
-+ Arduino Nano
-+ Arduino UNO
-+ Arduino Mega
-
-> We recommend you to use Arduino Nano
+> You can use any Arduino board, Other boards are not tested(Example ESP8266, etc.)
 
 > Your board should at least have 2 KB SRAM and 16 KB Flash memory
 
