@@ -16,7 +16,7 @@ To start off with Ardupoly you need to have the latest and most excellent Arduin
 
 + Clone the repository on git bash using ```git clone https://github.com/AlphaHGaming/Ardupoly.git```
 + For instant downloads [Go Here](https://github.com/AlphaHGaming/Ardupoly/archive/refs/tags/v1.0.0-beta.zip) 
-+ Open the _src/Game.ino_ file in your latest and trusted Arduino IDE and then upload the sketch to your Arduino. 
++ Open the _Game/Game.ino_ file in your latest and trusted Arduino IDE and then upload the sketch to your Arduino. 
 + If compilation was successful, you can open the Serial Monitor and start playing the game. 
 
 > This code works only for the Ardupoly supported list of Arduino boards.
