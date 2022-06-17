@@ -14,8 +14,6 @@
  limitations under the License.
 */
 
-//testing dev environment
-
 #include"monoMain.h"
 
 Game game;
