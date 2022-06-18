@@ -14,8 +14,6 @@
  limitations under the License.
 */
 
-#define NO_DATA '0'
-
 String Game::switchPlayerPlaces(char attrib){
   if(attrib == 'p'){
     switch(currentPosition){
@@ -274,25 +272,25 @@ void Game::buyProperty(){
       Serial.print(F("Your money balance: "));
 
       if(currentPlayer == 'c'){
-        decreasePlayerMoney(&(propertyPrice[currentPosition]), NO_DATA);
+        decreasePlayerMoney(&(propertyPrice[currentPosition]), '0');
         propertyState[currentPosition] = 1;
         propertyOwners[currentPosition] = 'c';
         Serial.println(car);
       }
       else if(currentPlayer == 's'){
-        decreasePlayerMoney(&(propertyPrice[currentPosition]), NO_DATA);
+        decreasePlayerMoney(&(propertyPrice[currentPosition]), '0');
         propertyState[currentPosition] = 1;
         propertyOwners[currentPosition] = 's';
         Serial.println(ship);
       }
       else if(currentPlayer == 'p'){
-        decreasePlayerMoney(&(propertyPrice[currentPosition]), NO_DATA);
+        decreasePlayerMoney(&(propertyPrice[currentPosition]), '0');
         propertyState[currentPosition] = 1;
         propertyOwners[currentPosition] = 'p';
         Serial.println(plane);
       }
       else if(currentPlayer == 'o'){
-        decreasePlayerMoney(&(propertyPrice[currentPosition]), NO_DATA);
+        decreasePlayerMoney(&(propertyPrice[currentPosition]), '0');
         propertyState[currentPosition] = 1;
         propertyOwners[currentPosition] = 'o';
         Serial.println(copter);
@@ -427,16 +425,16 @@ void Game::propertyRent(){
   }
 
   if(currentPlayer == 'c'){
-    decreasePlayerMoney(&rentVal, NO_DATA);
+    decreasePlayerMoney(&rentVal, '0');
   }
   else if(currentPlayer == 's'){
-    decreasePlayerMoney(&rentVal, NO_DATA);
+    decreasePlayerMoney(&rentVal, '0');
   }
   else if(currentPlayer == 'p'){
-    decreasePlayerMoney(&rentVal, NO_DATA);
+    decreasePlayerMoney(&rentVal, '0');
   }
   else if(currentPlayer == 'o'){
-    decreasePlayerMoney(&rentVal, NO_DATA);
+    decreasePlayerMoney(&rentVal, '0');
   }
   
   if(propertyOwners[currentPosition] == 'c'){
@@ -473,7 +471,7 @@ bool Game::placeCheck(){
   else if(currentPosition == 7 or currentPosition == 16 or currentPosition == 25 or currentPosition == 34){
     short int deductionVal = 100;
     
-    decreasePlayerMoney(&deductionVal, NO_DATA);
+    decreasePlayerMoney(&deductionVal, '0');
 
     short int propertyCount = 0;
     
@@ -799,11 +797,11 @@ void Game::debtCheck(){
   
 }
 
-void Game::decreasePlayerMoney(short int* value, char player){           //the player attribute is only used in case of the auction function
-  if(!player){
+void Game::decreasePlayerMoney(short int* value, char player){           //the player attribute is only used in case of the auction function  
+  if(player == '0'){
     if(currentPlayer == 'c'){
       if(car < *value){
-        carDebt = (*value - car);
+        carDebt += (*value - car);
         car = 0;
       }
       else{
@@ -812,7 +810,7 @@ void Game::decreasePlayerMoney(short int* value, char player){           //the p
     }
     else if(currentPlayer == 's'){
       if(ship < *value){
-        shipDebt = (*value - ship);
+        shipDebt += (*value - ship);
         ship = 0;
       }
       else{
@@ -821,7 +819,7 @@ void Game::decreasePlayerMoney(short int* value, char player){           //the p
     }
     else if(currentPlayer == 'p'){
       if(plane < *value){
-        planeDebt = (*value - plane);
+        planeDebt += (*value - plane);
         plane = 0;
       }
       else{
@@ -830,7 +828,7 @@ void Game::decreasePlayerMoney(short int* value, char player){           //the p
     }
     else if(currentPlayer == 'o'){
       if(copter < *value){
-        copterDebt = (*value - copter);
+        copterDebt += (*value - copter);
         copter = 0;
       }
       else{
@@ -838,10 +836,10 @@ void Game::decreasePlayerMoney(short int* value, char player){           //the p
       }
     }
   }
-  else if(player){
-    if(player == NO_DATA){
+  else{
+    if(player == 'c'){
       if(car < *value){
-        carDebt = (*value - car);
+        carDebt += (*value - car);
         car = 0;
       }
       else{
@@ -850,7 +848,7 @@ void Game::decreasePlayerMoney(short int* value, char player){           //the p
     }
     else if(player == 's'){
       if(ship < *value){
-        shipDebt = (*value - ship);
+        shipDebt += (*value - ship);
         ship = 0;
       }
       else{
@@ -859,7 +857,7 @@ void Game::decreasePlayerMoney(short int* value, char player){           //the p
     }
     else if(player == 'p'){
       if(plane < *value){
-        planeDebt = (*value - plane);
+        planeDebt += (*value - plane);
         plane = 0;
       }
       else{
@@ -868,7 +866,7 @@ void Game::decreasePlayerMoney(short int* value, char player){           //the p
     }
     else if(player == 'o'){
       if(copter < *value){
-        copterDebt = (*value - copter);
+        copterDebt += (*value - copter);
         copter = 0;
       }
       else{
