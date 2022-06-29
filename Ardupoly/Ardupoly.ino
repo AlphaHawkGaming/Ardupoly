@@ -1,9 +1,12 @@
 #include "Ardupoly.h"
 
+Ardupoly ardupoly;
+
 void setup() {
-    Ardupoly ardupoly;
+    ardupoly.Init();
 }
 
 void loop() {
-    
+    ardupoly.runGame();
+    delay(3000);
 }

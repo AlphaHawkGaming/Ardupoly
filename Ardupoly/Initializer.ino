@@ -1,6 +1,9 @@
 
-Ardupoly::Ardupoly() {
+
+void Ardupoly::Init() {
     Serial.begin(115200);
+    randomSeed(analogRead(0));     //seed for random dice value
+    randomSeed(analogRead(4));
 
     Serial.println(F("            ARDUPOLY              "));
     Serial.println(F(" __________________________________"));
@@ -14,7 +17,7 @@ Ardupoly::Ardupoly() {
         numberOfPlayers = Serial.parseInt();
 
         if(numberOfPlayers > 4 || numberOfPlayers < 2) {
-            Serial.println("# Invalid number of players, try again.");
+            Serial.println(F("# Invalid number of players, try again."));
         }
         else {
             initialized = true;
@@ -25,9 +28,4 @@ Ardupoly::Ardupoly() {
             Serial.println(F("\n ------ Let The Game Begin! ------")); 
         }
     }
-}
-
-Ardupoly::~Ardupoly() 
-{
-    
 }
