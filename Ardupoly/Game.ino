@@ -2,7 +2,6 @@
 void Ardupoly::runGame() {
 
     static uint8_t playerIndex = 0;
-    String gameObjects[4] = { "Car", "Ship", "Plane", "Copter" };
 
     for(int i = 0; i < numberOfPlayers; i++) {
         Serial.print("| " + gameObjects[i]);
@@ -25,7 +24,12 @@ void Ardupoly::runGame() {
         currentPlayer->money += 200;
     }
 
-    Serial.println("You landed on " + getPlaceName());
+    String tmp;
+    getPlaceName(tmp);
+
+    Serial.println("You landed on " + tmp.substring(0, (tmp.length() - 1)));
+
+    propertyReference = (tmp.substring(tmp.length() - 1))[0];
 
     parsePlayerPlace();
     
@@ -34,6 +38,7 @@ void Ardupoly::runGame() {
     }
     else {
         playerIndex++;
-        currentPlayer = &(players[playerIndex]);
     }
+
+    currentPlayer = &(players[playerIndex]);
 }

@@ -9,4 +9,7 @@ void setup() {
 void loop() {
     ardupoly.runGame();
     delay(3000);
+    Serial.println("");
+    Serial.println("");
+    Serial.println("");
 }
