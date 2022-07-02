@@ -24,8 +24,6 @@ void Ardupoly::Init() {
             for(int i = 0; i < numberOfPlayers; i++) {
                 players[i] = player();
             }
-            
-            players[0].propertyOwned[0] = 8;
 
             Serial.println(F("\n ------ Let The Game Begin! ------")); 
         }

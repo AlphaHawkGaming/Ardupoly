@@ -1,8 +1,5 @@
 
 void Ardupoly::runGame() {
-
-    static uint8_t playerIndex = 0;
-
     for(int i = 0; i < numberOfPlayers; i++) {
         Serial.print("| " + gameObjects[i]);
         Serial.print(": ");
@@ -42,3 +39,4 @@ void Ardupoly::runGame() {
 
     currentPlayer = &(players[playerIndex]);
 }
+

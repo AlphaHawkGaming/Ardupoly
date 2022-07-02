@@ -1,12 +1,13 @@
 
 uint8_t Ardupoly::rollDice(String& player) {
-
   uint8_t diceVal1 = 0;
   uint8_t diceVal2 = 0;
   
   if(!currentPlayer->inJail()) {
     Serial.print(F("Ready to roll the dice? Press any key! It is currently "));
     Serial.println(player + "'s turn");
+
+    Utility::clearBuffer();
 
     while(Serial.available() == 0){}
 
@@ -19,7 +20,9 @@ uint8_t Ardupoly::rollDice(String& player) {
         Serial.println(F("Rolling again as you rolled a double earlier!"));
       }
       else if(doubleFlag == 3) {
-        diceVal1, diceVal2 = 0;
+        currentPlayer->position = 27;
+        diceVal2 = 0;
+        diceVal1 = 0;
         break;
       }
 

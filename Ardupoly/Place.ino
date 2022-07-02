@@ -1,6 +1,5 @@
 
 void Ardupoly::parsePlayerPlace() {
-
      if(currentPlayer->position == 2 or currentPlayer->position == 4 or currentPlayer->position == 11 or currentPlayer->position == 20 or currentPlayer->position == 29 or currentPlayer->position == 32) {
           //Chance 
           return;
@@ -10,13 +9,12 @@ void Ardupoly::parsePlayerPlace() {
           return;
      }
      else if(currentPlayer->position != 18 && currentPlayer->position != 9 && currentPlayer->position != 27 && currentPlayer->position != 0) {
-          propertyEvent();
+          Property propertyEvent(this);
      }
 }
 
 void Ardupoly::getPlaceName(String& playerPlace) const {
-
-    switch(currentPlayer->position) {
+     switch(currentPlayer->position) {
       case 1:
            playerPlace = "Old kent roadA";
            break;

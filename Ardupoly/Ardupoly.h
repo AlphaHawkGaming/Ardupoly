@@ -1,17 +1,12 @@
+
 class Ardupoly
 {       
 public:
     void Init();
     void runGame();
 private:
-    struct player;
-    
     void parsePlayerPlace();
     void getPlaceName(String& playerPlace) const;
-
-    void propertyEvent();
-    uint8_t propertyOwner(uint8_t& index, uint8_t& exponent);
-
     uint8_t rollDice(String& player);
 
     struct player
@@ -36,9 +31,13 @@ private:
     };
 
     uint8_t numberOfPlayers;
+    uint8_t playerIndex = 0;
     char propertyReference;
     
     player players[4];
     player* currentPlayer = &(players[0]);
     String gameObjects[4] = { "Car", "Ship", "Plane", "Copter" };
+
+    friend class Property;
 };
+
