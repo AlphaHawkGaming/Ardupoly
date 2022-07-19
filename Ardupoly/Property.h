@@ -9,6 +9,8 @@ private:
     void propertyBuy(Ardupoly::player* buyer);
     uint8_t propertyOwner();
     short int propertyValue();
+    void propertyRent(uint8_t& propertyOwnerIndex);
+    uint8_t propertyRentLevel(bool increase = false);
 
     uint8_t index;
     uint8_t propertyState;

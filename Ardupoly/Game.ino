@@ -27,6 +27,7 @@ void Ardupoly::runGame() {
     Serial.println("You landed on " + tmp.substring(0, (tmp.length() - 1)));
 
     propertyReference = (tmp.substring(tmp.length() - 1))[0];
+    propertyReference -= 65;
 
     parsePlayerPlace();
     
