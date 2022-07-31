@@ -30,19 +30,7 @@ Property::Property(Ardupoly* core)
         }
         else {
             Serial.println("you");
-
-            if(propertyRentLevel() != 3) {
-                Serial.println("Do you wanna increase the rent level? y/n");
-
-                Utility::clearBuffer();
-                while(Serial.available() == 0) {}
-
-                String response = Serial.readString();
-
-                if(response == "y\n") {
-                    propertyRentLevel(true);
-                }
-            }
+            propertyRentLevel(true);
         }
     }
     else {
@@ -147,30 +135,58 @@ void Property::propertyRent(uint8_t& propertyOwnerIndex) {
 }
 
 uint8_t Property::propertyRentLevel(bool increase) {
-    static uint8_t rentLevels[6] = { 0, 0, 0, 0, 0, 0 };
+    ardupolyCore->propertyReference++;
 
-    index = (ardupolyCore->propertyReference / 4);
+    float f_index = ardupolyCore->propertyReference / 4.00f;
 
-    if(index > 0)
-        index++;
+    if(f_index >= 0.00f && f_index <= 1.00f) {
+        index = 0;
+    }
+    else if(f_index > 1.00f && f_index <= 2.00f) {
+        index = 1;
+    }
+    else if(f_index > 2.00f && f_index <= 3.00f) {
+        index = 2;
+    }
+    else if(f_index > 3.00f && f_index <= 4.00f) {
+        index = 3;
+    }
+    else if(f_index > 4.00f && f_index <= 5.00f) {
+        index = 4;
+    }
+    else if(f_index > 5.00f && f_index <= 6.00f) {
+        index = 5;
+    }
 
-    exponent = ((index + 1) * 4) - (ardupolyCore->propertyReference + 1);
+    exponent = ((index + 1) * 4) - ardupolyCore->propertyReference;
     exponent = 6 - (exponent * 2);
 
-    propertyState = pow(2, exponent) + pow(2, (exponent + 1));
-    propertyState &= rentLevels[index];
-    propertyState = propertyState >> exponent;
+    propertyState = (int) (pow(2, exponent) + pow(2, (exponent + 1)));
 
-    if(increase && propertyState != 3) {
+    if(propertyState % 2 != 0 && propertyState != 3)
         propertyState++;
 
+    propertyState &= ardupolyCore->propertyRentLevels[index];
+    propertyState >>= exponent;
+    
+    if(increase && propertyState != 3) {
+        uint8_t rentLevel = propertyState;
+
+        if(propertyState == 1) {
+            propertyState <<= exponent;
+            ardupolyCore->propertyRentLevels[index] += propertyState;  
+        }
+        else {   
+            propertyState++;
+            propertyState <<= exponent;
+            ardupolyCore->propertyRentLevels[index] |= propertyState;
+        }
+
         Serial.print("Increased rent level to ");
-        Serial.println(propertyState + 1);
-
-        ardupolyCore->currentPlayer->money -= 400; 
-
-        propertyState = propertyState << exponent;
-        rentLevels[index] |= propertyState;
+        Serial.println(rentLevel + 2);
+    }
+    else if(propertyState == 3) {
+        Serial.println("Property rent level has been maxed");
     }
 
     return propertyState; 

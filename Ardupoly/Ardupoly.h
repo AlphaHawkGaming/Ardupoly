@@ -38,6 +38,7 @@ private:
     player* currentPlayer = &(players[0]);
     String gameObjects[4] = { "Car", "Ship", "Plane", "Copter" };
 
+    uint8_t propertyRentLevels[6] = { 0, 0, 0, 0, 0, 0 };
     friend class Property;
 };
 
