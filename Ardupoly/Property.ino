@@ -26,7 +26,11 @@ Property::Property(Ardupoly* core)
         
         if(gameObjectIndex != ardupolyCore->playerIndex) {
             Serial.println(ardupolyCore->gameObjects[gameObjectIndex]);
-            propertyRent(gameObjectIndex);
+
+            if(!ardupolyCore->players[gameObjectIndex].inJail())
+                propertyRent(gameObjectIndex);
+            else
+                Serial.println("You don't have to pay rent as property owner is in jail, gee!");
         }
         else {
             Serial.println("you");
@@ -61,10 +65,15 @@ void Property::propertyAuction() {
     Serial.println(F("Enter the value next to your player name to raise the bid"));
     
     for(int i=0; i<ardupolyCore->numberOfPlayers; i++) {
-        Serial.print(ardupolyCore->gameObjects[i]);
-        Serial.print(" → ");
-        Serial.print(i + 1);
-        Serial.print(" ");
+        if(ardupolyCore->players[i].jailBailChances == 4) {
+            Serial.print(ardupolyCore->gameObjects[i]);
+            Serial.print(" → ");
+            Serial.print(i + 1);
+            Serial.print(" ");
+        }
+        else {
+            continue;
+        }
     }
     
     Serial.println("");
@@ -250,6 +259,9 @@ short int Property::propertyValue() {
             break;
         case 14:
             value = 260;
+            break;
+        case 15:
+            value = 230;
             break;
         case 16:
             value = 260;

@@ -1,2 +1,5 @@
-# vs code directories
+# Build directories
+.bin/
+
+# VS Code
 .vscode/

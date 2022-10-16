@@ -11,6 +11,9 @@ void Ardupoly::parsePlayerPlace() {
      else if(currentPlayer->position != 18 && currentPlayer->position != 9 && currentPlayer->position != 27 && currentPlayer->position != 0) {
           Property propertyEvent(this);
      }
+     else if(currentPlayer->position == 27) {
+          jail();
+     }
 }
 
 void Ardupoly::getPlaceName(String& playerPlace) const {

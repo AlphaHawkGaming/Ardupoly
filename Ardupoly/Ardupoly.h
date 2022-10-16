@@ -8,12 +8,14 @@ private:
     void parsePlayerPlace();
     void getPlaceName(String& playerPlace) const;
     uint8_t rollDice(String& player);
+    void jail();
 
     struct player
     {
         short int money = 1500;
         uint8_t position = 0;
         uint8_t propertyOwned[3] = { 0, 0, 0 };
+        uint8_t jailBailChances = 4;
 
         bool inDebt() {
             if(money < 0)
@@ -23,7 +25,7 @@ private:
         }
 
         bool inJail() {
-            if(position == 27)
+            if(jailBailChances <= 3)
                 return true;
             else
                 return false;
