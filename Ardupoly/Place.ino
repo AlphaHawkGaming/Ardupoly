@@ -5,8 +5,7 @@ void Ardupoly::parsePlayerPlace() {
           return;
      }
      else if(currentPlayer->position == 7 or currentPlayer->position == 16 or currentPlayer->position == 25 or currentPlayer->position == 34) {
-          //Location 
-          return;
+          location();
      }
      else if(currentPlayer->position != 18 && currentPlayer->position != 9 && currentPlayer->position != 27 && currentPlayer->position != 0) {
           Property propertyEvent(this);

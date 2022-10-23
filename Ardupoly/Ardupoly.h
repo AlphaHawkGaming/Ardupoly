@@ -8,7 +8,9 @@ private:
     void parsePlayerPlace();
     void getPlaceName(String& playerPlace) const;
     uint8_t rollDice(String& player);
+    
     void jail();
+    void location();
 
     struct player
     {

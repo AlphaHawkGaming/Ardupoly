@@ -38,7 +38,11 @@ Property::Property(Ardupoly* core)
         }
     }
     else {
+        short int propertyPrice = propertyValue();
+
         Serial.println("Do you wanna buy this property? y/n");
+        Serial.print("Value - ");
+        Serial.println(propertyPrice);
 
         Utility::clearBuffer();
         while(Serial.available() == 0) {}
@@ -46,7 +50,7 @@ Property::Property(Ardupoly* core)
         String response = Serial.readString();
 
         if(response == "y\n") {         
-            propertyBuy(ardupolyCore->currentPlayer);
+            propertyBuy(ardupolyCore->currentPlayer, propertyPrice);
             Serial.println("You bought this property");
         }
         else {
@@ -114,17 +118,16 @@ void Property::propertyAuction() {
         Serial.println("Auction ended but nobody bid!");
     }
     else {
-        ardupolyCore->players[leadingBidder - 1].money += propertyValue() - bid;
-        propertyBuy(&(ardupolyCore->players[leadingBidder - 1]));
+        propertyBuy(&(ardupolyCore->players[leadingBidder - 1]), bid);
 
         Serial.print(ardupolyCore->gameObjects[leadingBidder - 1]);
         Serial.println(" won the auction and bought the property!");
     }
 }
 
-void Property::propertyBuy(Ardupoly::player* buyer) {
+void Property::propertyBuy(Ardupoly::player* buyer, short int& propertyPrice) {
     buyer->propertyOwned[index] |= propertyState;
-    buyer->money -= propertyValue();
+    buyer->money -= propertyPrice;
 }
 
 void Property::propertyRent(uint8_t& propertyOwnerIndex) {

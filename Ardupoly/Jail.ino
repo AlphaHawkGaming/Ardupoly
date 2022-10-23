@@ -19,7 +19,7 @@ void Ardupoly::jail()
         else if(choice == 2) {
             String tmp = "";
             uint8_t diceVal = rollDice(tmp);
-
+    
             if(diceVal == 0) {
                 currentPlayer->jailBailChances = 5;
                 Serial.println("Yee-haw! You got out of jail!");

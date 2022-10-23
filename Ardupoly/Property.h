@@ -6,7 +6,7 @@ public:
     ~Property(); 
 private:
     void propertyAuction(); 
-    void propertyBuy(Ardupoly::player* buyer);
+    void propertyBuy(Ardupoly::player* buyer, short int& propertyPrice);
     uint8_t propertyOwner();
     short int propertyValue();
     void propertyRent(uint8_t& propertyOwnerIndex);
